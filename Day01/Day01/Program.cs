@@ -6,6 +6,7 @@ namespace Day01
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(DateTime.Now);
             Console.WriteLine("Hello Gotham!");
             int sum = Add(5, 2);
             int n1 = 10, n2 = 32;
@@ -13,6 +14,10 @@ namespace Day01
             PrintMessage();
             string msg = GetMessage();
             PrintMessage(msg);
+
+            int result = 0;
+            bool isEven = Add(n1, n2, ref result);
+            Console.WriteLine($"{n1} + {n2} = {result}. Is even? {isEven}");
         }
 
         static void PrintMessage()
@@ -36,6 +41,13 @@ namespace Day01
         {
             num1 += 5;
             return num1 + num2;
+        }
+
+        //ref - keyword for pass by reference
+        static bool Add(int num1, int num2, ref int sum)
+        {
+            sum = num1 + num2;
+            return sum % 2 == 0;
         }
 
         static void SayHello(string name)
