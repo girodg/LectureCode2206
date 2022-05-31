@@ -16,6 +16,8 @@ namespace Day01
             PrintMessage(msg);//without timestamp
             Timestamp(ref msg);
             PrintMessage(msg);//with timestamp
+            PostFix(msg, 99);
+            PostFix(msg);
 
             int result = 0;
             bool isEven = Add(n1, n2, ref result);
@@ -23,6 +25,33 @@ namespace Day01
 
             string nmStr = "5";
             bool isGOod = IntTryParse(nmStr, out int number);
+
+            MyFavoriteNumber(out int favorite);
+            Console.WriteLine($"Your favorite number is {favorite}. Weird.");
+        }
+
+        static string PostFix(string msg, int num = 1)
+        {
+            return msg + num;
+        }
+
+        static void MyFavoriteNumber(out int myFave)
+        {
+            Console.Write("What is your favorite number? ");
+            string faveString = Console.ReadLine();
+            //if (!int.TryParse(faveString, out myFave))
+            //{
+            //    Console.WriteLine("How hard is this, Aquaman?");
+            //}
+            try
+            {
+                myFave = int.Parse(faveString);
+            }
+            catch (Exception)
+            {
+                myFave = 0;
+                Console.WriteLine("How hard is this, Aquaman?");
+            }
         }
 
         static bool IntTryParse(string numberStr, out int number)
