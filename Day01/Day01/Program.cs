@@ -13,11 +13,37 @@ namespace Day01
             sum = Add(n1, n2);
             PrintMessage();
             string msg = GetMessage();
-            PrintMessage(msg);
+            PrintMessage(msg);//without timestamp
+            Timestamp(ref msg);
+            PrintMessage(msg);//with timestamp
 
             int result = 0;
             bool isEven = Add(n1, n2, ref result);
             Console.WriteLine($"{n1} + {n2} = {result}. Is even? {isEven}");
+
+            string nmStr = "5";
+            bool isGOod = IntTryParse(nmStr, out int number);
+        }
+
+        static bool IntTryParse(string numberStr, out int number)
+        {
+            bool isNumber = false;
+            try
+            {
+                number = int.Parse(numberStr);
+                isNumber = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                number = 0;
+            }
+            return isNumber;
+        }
+
+        static void Timestamp(ref string message)
+        {
+            message = $"{DateTime.Now}: {message}";
         }
 
         static void PrintMessage()
