@@ -75,11 +75,11 @@ namespace Day01
             message = $"{DateTime.Now}: {message}";
         }
 
-        static void PrintMessage()
-        {
-            Console.WriteLine("Hello Gotham.");
-        }
-        static void PrintMessage(string message)
+        //static void PrintMessage()
+        //{
+        //    Console.WriteLine("Hello Gotham.");
+        //}
+        static void PrintMessage(string message = "Hello Gotham.")
         {
             Console.WriteLine(message);
         }
