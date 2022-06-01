@@ -18,11 +18,44 @@ namespace Day02
             ArrayChallenge();
 
             // = new  that is creating an instance
-            List<string> bestList = new List<string>() { "Batman" };
+            List<string> bestList = new List<string>();// { "Batman" };
+            PrintInfo(bestList);//Count: 0  Capacity: 0
             bestList.Add("Flash");
+            PrintInfo(bestList);//Count: 1  Capacity: 0
             bestList.Add("Wonder Woman");
+            PrintInfo(bestList);//Count: 2 Capacity:4
+            bestList.Add("Batman");
+            bestList.Add("Aquaman");
+            bestList.Add("Superman");
+            PrintInfo(bestList);//Count: 5 Capacity:8
+            bestList.Add("Hulk");
+            bestList.Add("Spiderman");
+            bestList.Add("Green Lantern");
+            bestList.Add("Daredevil");
+            PrintInfo(bestList);//Count: 9 Capacity:16
+            Print(bestList);
 
             ListChallenge();
+        }
+
+        private static void Print(List<string> bestList)
+        {
+            Console.WriteLine("----------Supers----------");
+            //for (int i = 0; i < bestList.Count; i++)
+            //{
+            //    Console.WriteLine(bestList[i]);
+            //}
+            foreach (string super in bestList)
+            {
+                Console.WriteLine(super);
+            }
+        }
+
+        private static void PrintInfo(List<string> list)
+        {
+            //Count: # of items added to the list
+            //Capacity: length of internal array
+            Console.WriteLine($"Count: {list.Count}\tCapacity: {list.Capacity}");
         }
 
         static void ListChallenge()
