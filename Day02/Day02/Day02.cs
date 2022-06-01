@@ -8,6 +8,7 @@ namespace Day02
     {
         public static void Run()
         {
+            StringChallenges();
             string[] best = new string[] { "Batman", "Superman?", "Flash" };
             Console.WriteLine(best[1]);
             Console.WriteLine("----------------");
@@ -43,8 +44,19 @@ namespace Day02
             Print(bestList);
 
             ListChallenge();
+
         }
 
+        private static void StringChallenges()
+        {
+            string dataString = "5;4;3;;2;1:A:B:C";
+            string[] data = dataString.Split(new char[] { ';', ':' }, StringSplitOptions.RemoveEmptyEntries);
+            int index = 1;
+            foreach (string item in data)
+            {
+                Console.WriteLine($"{index++}: {item}");
+            }
+        }
 
         private static void Print(List<string> bestList)
         {
