@@ -38,6 +38,7 @@ namespace Day02
             ListChallenge();
         }
 
+
         private static void Print(List<string> bestList)
         {
             Console.WriteLine("----------Supers----------");
@@ -65,7 +66,37 @@ namespace Day02
             for (int i = 0; i < 10; i++)
             {
                 //0.0 - 1.0 like a percentage
-                grades.Add(randy.NextDouble() * 101);
+                grades.Add(randy.NextDouble() * 100);
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            PrintGrades(grades);
+        }
+        private static void PrintGrades(List<double> grades)
+        {
+            Console.Clear();
+            //for (int i = 0; i < grades.Count; i++)
+            //{
+            //    Console.WriteLine(grades[i]);
+            //}
+            int midX = Console.WindowWidth / 2;
+            int midY = Console.WindowHeight / 2 - 6;
+            string header = "----------Grades----------";
+            Console.SetCursorPosition(midX - header.Length / 2, midY);
+            Console.WriteLine(header);
+            foreach (double grade in grades)
+            {
+                //,7 - right-aligns in 7 spaces
+                //:N2 - number w/ 2 decimal places
+                if (grade < 59.5) Console.BackgroundColor = ConsoleColor.Red;
+                else if (grade < 69.5) Console.ForegroundColor = ConsoleColor.DarkYellow;
+                else if (grade < 79.5) Console.ForegroundColor = ConsoleColor.Yellow;
+                else if (grade < 89.5) Console.ForegroundColor = ConsoleColor.Blue;
+                else Console.ForegroundColor = ConsoleColor.Green;
+
+                Console.CursorLeft = midX - 3;
+                Console.WriteLine($"{grade,7:N2}");
+                Console.ResetColor();
             }
         }
 
