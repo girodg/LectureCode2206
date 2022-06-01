@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Day02
 {
@@ -15,6 +16,12 @@ namespace Day02
                 Console.WriteLine(best[i]);//indexer: O(1). constant.
             }
             best[1] = "Aquaman";
+            //1. use ToList
+            List<string> list = best.ToList();
+            //2. pass the array to the list constructor
+            List<string> list2 = new List<string>(best);
+            List<string> list3 = list2;//will it copy the list?
+            list3.Clear();
             ArrayChallenge();
 
             // = new  that is creating an instance
@@ -71,6 +78,54 @@ namespace Day02
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             PrintGrades(grades);
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            int numDropped = DropFailing(grades);
+            PrintGrades(grades);
+            Console.WriteLine($"Number dropped: {numDropped}");
+            List<double> curved = CurveGrades(grades);
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            PrintGrades(curved);
+        }
+
+        static List<double> CurveGrades(List<double> grades)
+        {
+            List<double> cloned = grades.ToList();//clone it
+            for (int i = 0; i < cloned.Count; i++)
+            {
+                //if (cloned[i] > 95) cloned[i] = 100;
+                //else cloned[i] += 5;
+                //OR...
+                //ternary operator
+                //replaces if-else
+                cloned[i] = (cloned[i] > 95) ? 100 : cloned[i] + 5;
+            }
+            return cloned;
+        }
+
+        static int DropFailing(List<double> grades)
+        {
+            int removed = 0;
+            //for (int i = 0; i < grades.Count; i++)
+            //{
+            //    if (grades[i] < 59.5)
+            //    {
+            //        removed++;
+            //        grades.RemoveAt(i);
+            //        i--;
+            //    }
+            //}
+            //OR...use a reverse for loop
+            for (int i = grades.Count - 1; i >= 0; i--)
+            {
+                if (grades[i] < 59.5)
+                {
+                    removed++;
+                    grades.RemoveAt(i);
+                }
+            }
+            return removed;
         }
         private static void PrintGrades(List<double> grades)
         {
@@ -86,15 +141,16 @@ namespace Day02
             Console.WriteLine(header);
             foreach (double grade in grades)
             {
-                //,7 - right-aligns in 7 spaces
-                //:N2 - number w/ 2 decimal places
                 if (grade < 59.5) Console.BackgroundColor = ConsoleColor.Red;
                 else if (grade < 69.5) Console.ForegroundColor = ConsoleColor.DarkYellow;
                 else if (grade < 79.5) Console.ForegroundColor = ConsoleColor.Yellow;
                 else if (grade < 89.5) Console.ForegroundColor = ConsoleColor.Blue;
                 else Console.ForegroundColor = ConsoleColor.Green;
 
-                Console.CursorLeft = midX - 3;
+                Console.CursorLeft = midX - 3;//move the cursor horizontally
+
+                //,7 - right-aligns in 7 spaces
+                //:N2 - number w/ 2 decimal places
                 Console.WriteLine($"{grade,7:N2}");
                 Console.ResetColor();
             }
