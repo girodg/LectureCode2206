@@ -11,6 +11,8 @@ namespace Day03
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.Unicode;
+
+            Dice();
             //Thread.CurrentThread.CurrentCulture = new CultureInfo("it-IT");
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo("it-IT");
             //3 ways to add data:
@@ -61,6 +63,45 @@ namespace Day03
             PressAnyKey();
             DropStudent(pg2);
             CurveStudent(pg2);
+        }
+
+        enum DiceFaces
+        {
+            One, Two, Three, Four, Five, Six
+        }
+        private static void Dice()
+        {
+            char[] symbols = new char[]
+            {
+                '\u2680', '\u2681', '\u2682', '\u2683', '\u2684', '\u2685'
+            };
+            foreach (DiceFaces face in Enum.GetValues(typeof(DiceFaces)))
+            {
+                Console.Write(symbols[(int)face]);
+            }
+            Console.WriteLine();
+            PressAnyKey();
+            Dictionary<DiceFaces, int> throws = new();
+            for (int i = 0; i < 100; i++)
+            {
+                DiceFaces diceThrow = (DiceFaces)_rando.Next(6);
+                //if diceThrow is already in the dictionary, increment the count
+                //else add the diceThrow to the dictionary
+                if (throws.TryGetValue(diceThrow, out int count))
+                    throws[diceThrow] = count + 1;
+                else
+                    throws[diceThrow] = 1;//throws.Add(diceThrow,1);
+
+                Console.Write(symbols[(int)diceThrow]);
+            }
+            Console.WriteLine();
+            foreach (KeyValuePair<DiceFaces,int> dice in throws)
+            {
+                //dice.Key is the DiceFace
+                //dice.Value is the count for that DiceFace
+                Console.WriteLine($"{symbols[(int)dice.Key]} : {dice.Value}");
+            }
+            Console.ReadKey();
         }
 
         private static void CurveStudent(Dictionary<string, double> course)
