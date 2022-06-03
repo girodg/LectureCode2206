@@ -65,26 +65,28 @@ namespace Day03
             CurveStudent(pg2);
         }
 
-        enum DiceFaces
+        enum DiceFace
         {
             One, Two, Three, Four, Five, Six
         }
         private static void Dice()
         {
+            //\u defines a unicode value
             char[] symbols = new char[]
             {
                 '\u2680', '\u2681', '\u2682', '\u2683', '\u2684', '\u2685'
             };
-            foreach (DiceFaces face in Enum.GetValues(typeof(DiceFaces)))
+            foreach (DiceFace face in Enum.GetValues(typeof(DiceFace)))
             {
-                Console.Write(symbols[(int)face]);
+                Console.Write(symbols[(int)face]);//use the enum as an index into the symbol array
             }
             Console.WriteLine();
             PressAnyKey();
-            Dictionary<DiceFaces, int> throws = new();
+            //store the counts of rolling each dice face
+            Dictionary<DiceFace, int> throws = new();
             for (int i = 0; i < 100; i++)
             {
-                DiceFaces diceThrow = (DiceFaces)_rando.Next(6);
+                DiceFace diceThrow = (DiceFace)_rando.Next(6);
                 //if diceThrow is already in the dictionary, increment the count
                 //else add the diceThrow to the dictionary
                 if (throws.TryGetValue(diceThrow, out int count))
@@ -95,7 +97,8 @@ namespace Day03
                 Console.Write(symbols[(int)diceThrow]);
             }
             Console.WriteLine();
-            foreach (KeyValuePair<DiceFaces,int> dice in throws)
+
+            foreach (KeyValuePair<DiceFace,int> dice in throws)
             {
                 //dice.Key is the DiceFace
                 //dice.Value is the count for that DiceFace
