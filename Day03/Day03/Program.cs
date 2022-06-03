@@ -60,7 +60,30 @@ namespace Day03
             PrintGrades(pg2);
             PressAnyKey();
             DropStudent(pg2);
-            PrintGrades(pg2);
+            CurveStudent(pg2);
+        }
+
+        private static void CurveStudent(Dictionary<string, double> course)
+        {
+            do
+            {
+                Console.Write("Who should we curve? ");
+                string student = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(student)) break;
+
+                bool wasFound = course.TryGetValue(student, out double grade);
+                if (wasFound)
+                {
+                    //ternary operator
+                    grade = (grade > 95) ? 100 : grade + 5;
+                    course[student] = grade;//overwrite with the new grade
+                    Console.WriteLine($"{student}'s grade was updated to {grade}.");
+                }
+                else
+                    Console.WriteLine($"{student} is nowhere to be found.");
+                PressAnyKey();
+                PrintGrades(course);
+            } while (true);
         }
 
         private static void DropStudent(Dictionary<string, double> course)
