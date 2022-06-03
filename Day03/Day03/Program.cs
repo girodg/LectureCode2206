@@ -29,6 +29,20 @@ namespace Day03
             menu["Garlic Bread"] = 5.99F;
             PrintMenu(menu);
 
+            string menuItem = "Garlic Bread";
+            bool wasRemoved = menu.Remove(menuItem);
+            if (wasRemoved) 
+                Console.WriteLine($"{menuItem} forever deleted! Yeah!");
+            else 
+                Console.WriteLine($"{menuItem} is nowhere to be found.");
+
+            menuItem = "Chicken nuggets"; 
+            wasRemoved = menu.Remove(menuItem);
+            if (wasRemoved)
+                Console.WriteLine($"{menuItem} forever deleted! Yeah!");
+            else
+                Console.WriteLine($"{menuItem} is nowhere to be found.");
+
             PressAnyKey();
 
             Dictionary<string, double> pg2 = FillDictionary();
