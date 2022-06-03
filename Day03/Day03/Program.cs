@@ -43,11 +43,41 @@ namespace Day03
             else
                 Console.WriteLine($"{menuItem} is nowhere to be found.");
 
+            menuItem = "Ravioli";
+            //float price = menu["Burger"];//will throw an exception!
+            if (menu.TryGetValue(menuItem, out float price))
+            {
+                float newPrice = price + 4;
+                menu[menuItem] = newPrice;//update the value in the dictionary
+                Console.WriteLine($"{menuItem} was {price:C2} but is now {newPrice:C2}. Thanks Putin!");
+            }
+            else
+                Console.WriteLine($"{menuItem} not found. go away.");
+
             PressAnyKey();
 
             Dictionary<string, double> pg2 = FillDictionary();
             PrintGrades(pg2);
+            PressAnyKey();
+            DropStudent(pg2);
+            PrintGrades(pg2);
+        }
 
+        private static void DropStudent(Dictionary<string, double> course)
+        {
+            do
+            {
+                Console.Write("Who should be dropped? ");
+                string student = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(student)) break;
+                bool wasRemoved = course.Remove(student);
+                if (wasRemoved)
+                    Console.WriteLine($"{student} was kicked!");
+                else
+                    Console.WriteLine($"{student} is nowhere to be found.");
+                PressAnyKey();
+                PrintGrades(course);
+            } while (true);
         }
 
         private static void PressAnyKey()
