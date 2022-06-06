@@ -44,6 +44,35 @@ namespace Day04
 
             ReadData(filePath);
             Serialize(filePath);
+            Deserialize(filePath);
+        }
+
+        private static void Deserialize(string filePath)
+        {
+            //change the extension to .json
+            filePath = Path.ChangeExtension(filePath, ".json");
+
+            //check if the file is there
+            if (File.Exists(filePath))
+            {
+                string superData = File.ReadAllText(filePath);
+                //deserialize
+                try
+                {
+                    List<Superhero> team = JsonConvert.DeserializeObject<List<Superhero>>(superData);
+
+                    foreach (var super in team)
+                    {
+                        Console.WriteLine($"Hi. I am {super.Name} ({super.SecretIdentity}). I am good at {super.Power}.");
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine($"{filePath} is the incorrect format.");
+                }            
+            }
+            else
+                Console.WriteLine($"{filePath} does not exists!");
         }
 
         private static void Serialize(string filePath)
@@ -57,6 +86,8 @@ namespace Day04
             heroes.Add(new Superhero() { Name = "Aquaman", SecretIdentity = "Arthur Curry", Power = Superpower.Swimming });
             heroes.Add(new Superhero() { Name = "Wonder Woman", SecretIdentity = "Diana Prince", Power = Superpower.Strength });
             heroes.Add(new Superhero() { Name = "Spiderman", SecretIdentity = "Peter Parker", Power = Superpower.Swinging});
+            
+            //serialize the list to a file
             using (StreamWriter sw = new StreamWriter(filePath))
             {
                 //add using Newtonsoft.Json; to the top
