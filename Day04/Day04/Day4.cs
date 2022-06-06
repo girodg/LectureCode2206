@@ -1,9 +1,22 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
 namespace Day04
 {
+    enum Superpower
+    {
+        Speed, Invisibility, Strength, Money, Swimming, Flying, Swinging
+    }
+    class Superhero
+    {
+        public string Name { get; set; }
+        public string SecretIdentity { get; set; }
+        public Superpower Power { get; set; }
+    }
+
     internal static class Day4
     {
         public static void Run()
@@ -30,6 +43,30 @@ namespace Day04
             }//3. Close the file!
 
             ReadData(filePath);
+            Serialize(filePath);
+        }
+
+        private static void Serialize(string filePath)
+        {
+            //change the extension to .json
+            filePath = Path.ChangeExtension(filePath, ".json");
+
+            List<Superhero> heroes = new List<Superhero>();
+            heroes.Add(new Superhero() { Name = "Batman", SecretIdentity = "Bruce Wayne", Power = Superpower.Money });
+            heroes.Add(new Superhero() { Name = "Flash", SecretIdentity = "Barry Allen", Power = Superpower.Speed });
+            heroes.Add(new Superhero() { Name = "Aquaman", SecretIdentity = "Arthur Curry", Power = Superpower.Swimming });
+            heroes.Add(new Superhero() { Name = "Wonder Woman", SecretIdentity = "Diana Prince", Power = Superpower.Strength });
+            heroes.Add(new Superhero() { Name = "Spiderman", SecretIdentity = "Peter Parker", Power = Superpower.Swinging});
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                //add using Newtonsoft.Json; to the top
+                using (JsonTextWriter jsonText = new JsonTextWriter(sw))
+                {
+                    jsonText.Formatting = Formatting.Indented;
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Serialize(jsonText, heroes);
+                }
+            }//
         }
 
         private static void ReadData(string filePath)
