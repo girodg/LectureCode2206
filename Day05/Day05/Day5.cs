@@ -12,6 +12,9 @@ namespace Day05
         static Random rando = new Random();
         public static void Run()
         {
+            long result = Factorial(5);
+            Console.WriteLine($"5! = {result}");
+            Console.ReadKey();
             while (true)
             {
                 if (rando.Next(100) == 50) break;
@@ -27,6 +30,13 @@ namespace Day05
             int N = 1;
             Counter(N);
             Console.ResetColor();
+        }
+
+        static long Factorial(int N)
+        {
+            if (N == 1) return 1; //exit condition
+            long result = N * Factorial(N - 1);//5 * 4!
+            return result;
         }
 
         private static void Counter(int N)
