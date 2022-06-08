@@ -26,6 +26,36 @@ namespace Day06
             if (compResult == 0) Console.WriteLine($"{s1} EQUALS {s2}");
             else if(compResult == -1) Console.WriteLine($"{s1} LESS THAN {s2}");
             else if (compResult == 1) Console.WriteLine($"{s1} GREATER THAN {s2}");
+
+            List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            Split(numbers);
+        }
+
+        private static void Split(List<int> numbers)
+        {
+            Print("Full List", numbers);
+            List<int> left = new List<int>();//create empty list
+            List<int> right = new List<int>();
+
+            int mid = numbers.Count / 2;
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                if (i < mid)
+                    left.Add(numbers[i]);
+                else
+                    right.Add(numbers[i]);
+            }
+            Print("left", left);
+            Print("right", right);
+        }
+
+        private static void Print(string header, List<int> list)
+        {
+            Console.WriteLine($"-------{header}-------");
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
         }
 
         private static void Swap(int[] nums, int ndx1, int ndx2)
