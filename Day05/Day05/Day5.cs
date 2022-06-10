@@ -52,6 +52,7 @@ namespace Day05
             Console.ResetColor();
         }
 
+        #region Fibonacci
         static ulong Fibonacci2(int Steev)
         {
             //exit conditions
@@ -67,11 +68,13 @@ namespace Day05
         {
             //exit conditions
             if (N == 0) return 0;
-            if (N == 1) return 1; 
+            if (N == 1) return 1;
 
             long result = Fibonacci(N - 1) + Fibonacci(N - 2);
             return result;
         }
+        #endregion
+        #region Recursive
 
         static long Factorial(int N)
         {
@@ -95,6 +98,7 @@ namespace Day05
             if (rando.Next(100) == 50)
                 return;//break
             RandoRecursive();
-        }
+        } 
+        #endregion
     }
 }

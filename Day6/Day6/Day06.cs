@@ -13,7 +13,7 @@ namespace Day6
             List<int> ints = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             int index = LinearSearch(ints, 9);
-            if(index != -1)
+            if (index != -1)
                 Console.WriteLine($"9 was found at index {index}.");
             else
                 Console.WriteLine("Out of luck, Chuck.");
