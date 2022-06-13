@@ -39,5 +39,16 @@ namespace LectureLib
             Items = items.ToList();//clone the list
         }
         #endregion
+
+        #region Methods
+
+        public void AddItem(string item)
+        {
+            if (Count >= Capactity)
+                throw new Exception("Your backpack is full, fool!");
+
+            _items.Add(item);
+        }
+        #endregion
     }
 }

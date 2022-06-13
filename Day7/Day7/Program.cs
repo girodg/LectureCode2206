@@ -24,6 +24,17 @@ namespace Day7
             }
 
             Inventory backpack = new Inventory(3, new List<string>());
+            try
+            {
+                backpack.AddItem("map");
+                backpack.AddItem("shovel");
+                backpack.AddItem("spear");
+                backpack.AddItem("gun");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
