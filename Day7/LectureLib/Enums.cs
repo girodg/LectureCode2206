@@ -5,4 +5,9 @@ namespace LectureLib
     {
         Checking, Savings, MoneyMarket, CD
     }
+
+    public enum WeaponRarity
+    {
+        Common, Uncommon, Rare, Legendary
+    }
 }

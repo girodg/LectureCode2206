@@ -42,7 +42,10 @@ namespace LectureLib
 
         #region Methods
 
-        public void AddItem(string item)
+        //every instance method has a hidden param called 'this'
+        //'this' refers to the instance it was called
+        //Inventory this
+        public void AddItem(string item)//hidden parameter called 'this'
         {
             if (Count >= Capactity)
                 throw new Exception("Your backpack is full, fool!");
