@@ -46,5 +46,21 @@ namespace LectureLib
         //an auto property. compiler will create the backing field for me
         public BankAccountType AccountType { get; private set; } = BankAccountType.Checking;
         #endregion
+
+        #region Constructor
+        //public BankAccount()//default construtor (no parameters)
+        //{
+
+        //}
+        public BankAccount(BankAccountType acctType, int acctNum, int routing, double balance)
+        {
+            AccountType = acctType;
+            AccountNumber = acctNum;
+            _routingNumber = routing;
+            _balance = balance;
+
+            //balance = _balance;//BACKWARDS and WRONG!!
+        }
+        #endregion
     }
 }
