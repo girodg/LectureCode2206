@@ -31,5 +31,13 @@ namespace LectureLib
             private set { _items = value; }
         }
         #endregion
+
+        #region Constructors
+        public Inventory(int capacity, List<string> items)
+        {
+            Capactity = capacity;
+            Items = items.ToList();//clone the list
+        }
+        #endregion
     }
 }

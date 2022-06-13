@@ -1,5 +1,6 @@
 ﻿using LectureLib;
 using System;
+using System.Collections.Generic;
 
 namespace Day7
 {
@@ -13,6 +14,16 @@ namespace Day7
             //banky = new BankAccount();//calling the default constructor
             banky = new BankAccount(BankAccountType.Checking, 123456789, 987654321, 10000.50);
             Console.WriteLine($"My account number: {banky.AccountNumber}");//call the get
+            try
+            {
+                double funds = banky.Withdraw(11000);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            Inventory backpack = new Inventory(3, new List<string>());
         }
     }
 }

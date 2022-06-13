@@ -62,5 +62,20 @@ namespace LectureLib
             //balance = _balance;//BACKWARDS and WRONG!!
         }
         #endregion
+
+        #region Methods
+        public void Deposit(double funds)
+        {
+            _balance += funds;
+        }
+        public double Withdraw(double funds)
+        {
+            if (_balance - funds < 0)
+                throw new Exception("Whoa! You can't withdraw that much.");
+
+            _balance -= funds;
+            return funds;
+        }
+        #endregion
     }
 }
