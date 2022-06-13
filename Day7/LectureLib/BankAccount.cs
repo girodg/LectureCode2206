@@ -22,8 +22,8 @@ namespace LectureLib
         //public: EVERYONE can see it
         //protected: my class and every class in my class hierarchy
         //
-        private int _accountNumber = 123456789, _routingNumber;
-        private double _balance;
+        private int _accountNumber = 123456789, _routingNumber = 987654321;
+        private double _balance = 0;
 
         #endregion
 
