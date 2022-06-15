@@ -11,6 +11,7 @@ namespace LectureLib
         public BowWeapon(int arrowCount, int arrowCapacity, WeaponRarity rarity, int level, int maxDamage, int cost) : 
             base(rarity, level, maxDamage, cost)
         {
+            _symbol = WeaponSymbol.Bow;
             ArrowCount = arrowCount;
             ArrowCapacity = arrowCapacity;
         }

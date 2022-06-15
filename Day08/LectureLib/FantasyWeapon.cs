@@ -13,6 +13,8 @@ namespace LectureLib
         public int MaxDamage { get; private set; }
         public int Cost { get; private set; }
 
+        protected WeaponSymbol _symbol;
+
         public int DoDamage()
         {
             Random rando = new Random();
@@ -21,10 +23,17 @@ namespace LectureLib
 
         public FantasyWeapon(WeaponRarity rarity, int level, int maxDamage, int cost)
         {
+            _symbol = WeaponSymbol.Sword;
+
             Rarity = rarity;
             Level = level;
             MaxDamage = maxDamage;
             Cost = cost;
+        }
+
+        internal char GetSymbol()
+        {
+            return (char)_symbol;
         }
     }
 }

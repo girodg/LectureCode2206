@@ -25,25 +25,29 @@ namespace Day7
                 Console.WriteLine(ex);
             }
 
-            Inventory backpack = new Inventory(3, new List<string>());
-            Inventory dufflebag = new Inventory(10, new List<string>());
+            Inventory backpack = new Inventory(3, new List<FantasyWeapon>());
+            Inventory dufflebag = new Inventory(10, new List<FantasyWeapon>());
             try
             {
-                backpack.AddItem("map");
-                backpack.AddItem("shovel");
-                backpack.AddItem("spear");
-                backpack.AddItem("gun");
+                backpack.AddItem(WeaponFactory.MakeWeapon(WeaponRarity.Common, 1, 10, 5));
+                backpack.AddItem(WeaponFactory.MakeWeapon(WeaponRarity.Uncommon, 10, 100, 50));
+                backpack.AddItem(WeaponFactory.MakeWeapon(WeaponRarity.Common, 1, 10, 5));
+                backpack.AddItem(WeaponFactory.MakeWeapon(WeaponRarity.Uncommon, 1, 10, 5));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            dufflebag.AddItem("gun");
+            dufflebag.AddItem(WeaponFactory.MakeWeapon(WeaponRarity.Legendary, 1, 10, 5));
+            dufflebag.AddItem(new BowWeapon(5, 10, WeaponRarity.Rare, 20, 75, 200));
 
 
             FantasyWeapon sting = new FantasyWeapon(WeaponRarity.Legendary, 100, 1000, 1000000);
             int damage = sting.DoDamage();
             Console.WriteLine($"We swing Sting and do {damage} damage to the rat.");
+
+            dufflebag.AddItem(sting);
+            dufflebag.PrintInventory();
 
             FantasyWeapon sword = WeaponFactory.MakeWeapon(WeaponRarity.Common, 1, 10, 10);
 
@@ -52,6 +56,40 @@ namespace Day7
             {
                 Console.WriteLine(rarity);
             }
+
+            int number = 5;
+            long bigNum = number;
+            number = (int)bigNum;
+
+            Person alfred = new Person("Alfred Pennyworth", 85);
+            Superhero batman = new Superhero("Batman", Superpower.Money, "Bruce Wayne", 35);
+
+            //UPCASTING: going from a derived variable to a base variable
+            // ALWAYS SAFE!!
+            Person guy = batman;//will this work?? YES!
+            guy = alfred;
+
+            //DOWNCASTING: going from a base variable to a derived variable
+            // NEVER SAFE!!!!!!!!!!
+            //ways to make this safe
+            //  try-catch (boo!)
+            //  as keyword
+            //  pattern matching
+            try
+            {
+                Superhero hero = (Superhero)guy;//will this work?? NO! will throw an exception
+
+            }
+            catch (Exception)
+            {
+            }
+
+            Superhero hero2 = guy as Superhero;//if cannot downcast, NULL will be stored in hero2
+            if(hero2 != null)
+                Console.WriteLine(hero2.Identity);//will throw a null reference exception
+
+            if(guy is Superhero hero3)
+                Console.WriteLine(hero3.Identity);
         }
     }
 }

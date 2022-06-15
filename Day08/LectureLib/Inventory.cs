@@ -11,7 +11,7 @@ namespace LectureLib
         static int NumberOfBackpacks = 0;//tied to the class
         #region Fields
         private int _capacity = 0;//tied to the instance b/c it's non-static
-        private List<string> _items = new List<string>();
+        private List<FantasyWeapon> _items = new List<FantasyWeapon>();
         #endregion
 
         #region Properties
@@ -26,7 +26,7 @@ namespace LectureLib
         {
             get { return _items.Count; }
         }
-        public List<string> Items
+        public List<FantasyWeapon> Items
         {
             get { return _items; }
             private set { _items = value; }
@@ -34,7 +34,7 @@ namespace LectureLib
         #endregion
 
         #region Constructors
-        public Inventory(int capacity, List<string> items)
+        public Inventory(int capacity, List<FantasyWeapon> items)
         {
             NumberOfBackpacks++;
             int localVar = 5;//local to this method only
@@ -55,12 +55,24 @@ namespace LectureLib
         //Inventory this
 
         //NON-static, instance method
-        public void AddItem(string item)//hidden parameter called 'this'
+        public void AddItem(FantasyWeapon item)//hidden parameter called 'this'
         {
             if (Count >= Capactity)
                 throw new Exception("Your backpack is full, fool!");
 
             _items.Add(item);
+        }
+
+        public void PrintInventory()
+        {
+            Console.WriteLine($"\n-------------INVENTORY ({Count})------------");
+            foreach (FantasyWeapon item in _items)
+            {
+                Console.WriteLine($"I have a level {item.Level} {item.Rarity} weapon {item.GetSymbol()} that can do {item.MaxDamage} damage. And it cost {item.Cost}.");
+                if(item is BowWeapon bow)
+                    Console.WriteLine($"\t and it has {bow.ArrowCount} arrows with a capacity to hold {bow.ArrowCapacity} arrows.");
+            }
+            Console.WriteLine();
         }
         #endregion
     }
