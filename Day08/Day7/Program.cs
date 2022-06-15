@@ -13,7 +13,8 @@ namespace Day7
 
             //create an instance of BankAccount
             //banky = new BankAccount();//calling the default constructor
-            banky = new BankAccount(BankAccountType.Checking, 123456789, 987654321, 10000.50);
+            //banky = new BankAccount(BankAccountType.Checking, 123456789, 987654321, 10000.50);
+            banky = Factory.MakeAcct(BankAccountType.Checking, 123456789, 987654321, 10000.50);
             Console.WriteLine($"My account number: {banky.AccountNumber}");//call the get
             try
             {
@@ -44,6 +45,7 @@ namespace Day7
             int damage = sting.DoDamage();
             Console.WriteLine($"We swing Sting and do {damage} damage to the rat.");
 
+            FantasyWeapon sword = WeaponFactory.MakeWeapon(WeaponRarity.Common, 1, 10, 10);
 
             Console.WriteLine("--------WEAPONRARITY----------");
             foreach (var rarity in Enum.GetValues<WeaponRarity>())
