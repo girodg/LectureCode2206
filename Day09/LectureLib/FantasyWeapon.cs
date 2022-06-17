@@ -15,10 +15,16 @@ namespace LectureLib
 
         protected WeaponSymbol _symbol;
 
-        public int DoDamage()
+        //public int DoDamage()
+        //{
+        //    Random rando = new Random();
+        //    return (int)(MaxDamage * rando.NextDouble());
+        //}
+
+        public int DoDamage(int enchantment = 0)
         {
             Random rando = new Random();
-            return (int)(MaxDamage * rando.NextDouble());
+            return (int)((MaxDamage + enchantment ) * rando.NextDouble());
         }
 
         public FantasyWeapon(WeaponRarity rarity, int level, int maxDamage, int cost)
@@ -31,14 +37,14 @@ namespace LectureLib
             Cost = cost;
         }
 
-        internal char GetSymbol()
-        {
-            return (char)_symbol;
-        }
+        //internal char GetSymbol()
+        //{
+        //    return (char)_symbol;
+        //}
 
         public virtual string Display()
         {
-            return $"I have a level {Level} {Rarity} weapon {GetSymbol()} that can do {MaxDamage} damage. And it cost {Cost}.";
+            return $"I have a level {Level} {Rarity} weapon {_symbol.GetSymbol()} that can do {MaxDamage} damage. And it cost {Cost}.";
 
         }
         public override string ToString()

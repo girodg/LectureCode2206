@@ -43,7 +43,8 @@ namespace Day7
 
 
             FantasyWeapon sting = new FantasyWeapon(WeaponRarity.Legendary, 100, 1000, 1000000);
-            int damage = sting.DoDamage();
+            int damage = sting.DoDamage(50);
+            damage = sting.DoDamage();
             Console.WriteLine($"We swing Sting and do {damage} damage to the rat.");
 
             dufflebag.AddItem(sting);

@@ -68,7 +68,7 @@ namespace LectureLib
             Console.WriteLine($"\n-------------INVENTORY ({Count})------------");
             foreach (FantasyWeapon item in _items)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item.Display());
                 //Console.WriteLine($"I have a level {item.Level} {item.Rarity} weapon {item.GetSymbol()} that can do {item.MaxDamage} damage. And it cost {item.Cost}.");
                 //if(item is BowWeapon bow)
                 //    Console.WriteLine($"\t and it has {bow.ArrowCount} arrows with a capacity to hold {bow.ArrowCapacity} arrows.");
