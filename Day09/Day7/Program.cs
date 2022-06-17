@@ -49,6 +49,7 @@ namespace Day7
 
             dufflebag.AddItem(sting);
             dufflebag.PrintInventory();
+            var bows = dufflebag.Bows();
 
             FantasyWeapon sword = WeaponFactory.MakeWeapon(WeaponRarity.Common, 1, 10, 10);
 
